@@ -116,7 +116,7 @@ let sum = (a, b, c, d) => {
 console.log(sum(1, 2, 3, 4));
 
 
-let objectLit = function() {
+let objectLit = () => {
   return {
     key1: 'value1',
     key2: 'value2',
@@ -128,7 +128,7 @@ let objectLit = function() {
 console.log(objectLit());
 
 
-let sumAndProduct = function(a, b) {
+let sumAndProduct = (a, b) => {
   let sum = a + b;
   let product = a * b;
   return [sum, product];
@@ -138,7 +138,7 @@ let sumAndProduct = function(a, b) {
 console.log(sumAndProduct(3, 9));
 
 
-let message = function(name) {
+let message = (name) => {
   return `Hello, ${name}!`;
 };
 
@@ -146,7 +146,7 @@ let message = function(name) {
 console.log(message('Allie'));
 
 
-let Student = function(name, age, hometown) {
+let Student = (name, age, hometown) => {
   this.name = name;
   this.age = age;
   this.hometown = hometown;
@@ -162,45 +162,45 @@ console.log(joe);
 
 
 
-Student.prototype.greeting = function() {
+Student.prototype.greeting = () => {
   return `Hi, my name is ${this.name}`;
 };
 
 // TODO: Uncomment the following line of code to see the output in the browser console
 // Note that the arrow function will cause this method to break!
-// console.log(joe.greeting());
+console.log(joe.greeting());
 
 // TODO: After viewing the previous console.log(), return the code to a working state.
 
 
 
-Student.courseName = function() {
+Student.courseName = () => {
   return 'This student is enrolled in Code 301.';
 };
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(Student.courseName());
 
+console.log(Student.courseName())
 
 
 // STEP 11
 // How do arrow functions affect constructor functions?
-Student.prototype.scope = function() {
+Student.prototype.scope = () => {
   console.log(this);
 };
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(joe.scope());
+console.log(joe.scope());
 
-Student.prototype.scopeArrow = (that) => console.log(this);
+Student.prototype.scopeArrow = () => console.log(this);
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(joe.scopeArrow());
+console.log(joe.scopeArrow());
 
 // TODO: Write a COMMENT below to answer the following questions.
 // 1. What is "this" when joe.scope() is invoked?
-//
+// Brad- In my browser console, when I turned Student.prototype into an arrow function, the console log printed out the entire global window object. I would say that 'this'doesn't work in the context of an arrow function.
 // 2. What is "this" when joe.scopeArrow() is invoked?
-//
+// Brad- Same as the previous. Because arrow functions do not bind 'this', it refered to the window object which was its scope.
 // 3. Explain why "this" is different when an arrow function is used.
-//
+// Brad- it's different because arrow functions do not bind 'this' like regular functions do within constructors. Instead it bubbles up to the next nearest scope.
